@@ -24,7 +24,7 @@ Reprodutor de músicas
   <img src=https://user-images.githubusercontent.com/88407564/145636552-47675cf0-9fe6-4482-8fbc-76fc622b85a7.png>
   <img src=https://user-images.githubusercontent.com/88407564/145636556-8ddd926e-750f-456f-9b5f-86f6aa0df953.png>
 </div>
-- Busca de música
+- Busca de músicas
 <div>
   <img src=https://user-images.githubusercontent.com/88407564/145636550-79ec4ae3-c567-4930-9f69-01dab619157d.png>
   <img src=https://user-images.githubusercontent.com/88407564/145636531-408ac22d-8cb7-4db8-969e-018a78828f8c.png>
