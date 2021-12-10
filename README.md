@@ -8,7 +8,7 @@ Reprodutor de músicas
 # Como executar ?
 - Baixe o projeto e realize um build (Irá demorar um pouco !)
 - Navegue até a pasta de bin/x86/Debug e copie todo o conteúdo dela
-- Crie uma pasta na diretório Meus Documentos chamada PLP
+- Crie uma pasta no diretório Meus Documentos chamada PLP
 - Cole todo o conteúdo copiado nessa pasta
 - Execute o arquivo executável (PLP.exe)
 
@@ -37,4 +37,5 @@ Reprodutor de músicas
 </div>
 
 # Observações
-Projeto em desenvolvimento. Talvez será portado para C#.
+- Se quiser adicionar um artista sem abrir um arquivo .mp3 no programa, navegue até o diretório PLP/logs/bib/ e crie uma pasta com o nome do artista
+- Projeto em desenvolvimento. Talvez será portado para C#.
