@@ -24,6 +24,7 @@ Reprodutor de músicas
   <img src=https://user-images.githubusercontent.com/88407564/145636552-47675cf0-9fe6-4482-8fbc-76fc622b85a7.png>
   <img src=https://user-images.githubusercontent.com/88407564/145636556-8ddd926e-750f-456f-9b5f-86f6aa0df953.png>
 </div>
+
 - Busca de músicas
 <div>
   <img src=https://user-images.githubusercontent.com/88407564/145636550-79ec4ae3-c567-4930-9f69-01dab619157d.png>
@@ -31,6 +32,7 @@ Reprodutor de músicas
   <img src=https://user-images.githubusercontent.com/88407564/145636544-17ad00f4-a1f5-4f86-8d1b-6ea1868770ef.png>
   <img src=https://user-images.githubusercontent.com/88407564/145636545-1a21ada6-d664-42ea-9b5f-972722dbe50c.png>
 </div>
+
 - Youtube
 <div>
   <img src=https://user-images.githubusercontent.com/88407564/145636558-8b41b114-bae7-4000-8afe-cc424155e6d7.png>
