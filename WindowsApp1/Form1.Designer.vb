@@ -51,7 +51,6 @@ Partial Class Form1
         Me.MetroTabPage4 = New MetroFramework.Controls.MetroTabPage()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.MetroTabPage3 = New MetroFramework.Controls.MetroTabPage()
-        Me.ITalk_RichTextBox1 = New PLP.iTalk.iTalk_RichTextBox()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -60,7 +59,6 @@ Partial Class Form1
         Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader12 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader13 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.wmp = New AxWMPLib.AxWindowsMediaPlayer()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -81,6 +79,9 @@ Partial Class Form1
         Me.MetroLabel3 = New MetroFramework.Controls.MetroLabel()
         Me.MetroToolTip1 = New MetroFramework.Components.MetroToolTip()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.ITalk_RichTextBox1 = New PLP.iTalk.iTalk_RichTextBox()
+        Me.wmp = New AxWMPLib.AxWindowsMediaPlayer()
         Me.CMS_Artista = New PLP.iTalk.iTalk_ContextMenuStrip()
         Me.RemoverDaBibliotecaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WikipediaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -90,7 +91,6 @@ Partial Class Form1
         Me.LetraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CMS_Album = New PLP.iTalk.iTalk_ContextMenuStrip()
         Me.Removerdabiblioteca = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.MetroTabControl1.SuspendLayout()
         Me.MetroTabPage1.SuspendLayout()
         CType(Me.ImagemMúsica, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,8 +100,8 @@ Partial Class Form1
         Me.MetroTabPage5.SuspendLayout()
         Me.MetroTabPage4.SuspendLayout()
         Me.MetroTabPage3.SuspendLayout()
-        CType(Me.wmp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.wmp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMS_Artista.SuspendLayout()
         Me.CMS_Musica.SuspendLayout()
         Me.CMS_Album.SuspendLayout()
@@ -402,12 +402,12 @@ Partial Class Form1
         '
         Me.MetroTabPage3.Controls.Add(Me.ITalk_RichTextBox1)
         Me.MetroTabPage3.Controls.Add(Me.ListView1)
-        Me.MetroTabPage3.Controls.Add(Me.wmp)
         Me.MetroTabPage3.Controls.Add(Me.TrackBar1)
         Me.MetroTabPage3.Controls.Add(Me.TextBox2)
         Me.MetroTabPage3.Controls.Add(Me.TextBox1)
         Me.MetroTabPage3.Controls.Add(Me.TextBox4)
         Me.MetroTabPage3.Controls.Add(Me.TextBox5)
+        Me.MetroTabPage3.Controls.Add(Me.wmp)
         Me.MetroTabPage3.Controls.Add(Me.lbSumber)
         Me.MetroTabPage3.Controls.Add(Me.lbNama)
         Me.MetroTabPage3.HorizontalScrollbarBarColor = True
@@ -421,20 +421,6 @@ Partial Class Form1
         Me.MetroTabPage3.VerticalScrollbarBarColor = True
         Me.MetroTabPage3.VerticalScrollbarHighlightOnWheel = False
         Me.MetroTabPage3.VerticalScrollbarSize = 10
-        '
-        'ITalk_RichTextBox1
-        '
-        Me.ITalk_RichTextBox1.AutoWordSelection = False
-        Me.ITalk_RichTextBox1.BackColor = System.Drawing.Color.Transparent
-        Me.ITalk_RichTextBox1.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.ITalk_RichTextBox1.ForeColor = System.Drawing.Color.DimGray
-        Me.ITalk_RichTextBox1.Location = New System.Drawing.Point(94, 13)
-        Me.ITalk_RichTextBox1.Name = "ITalk_RichTextBox1"
-        Me.ITalk_RichTextBox1.ReadOnly = False
-        Me.ITalk_RichTextBox1.Size = New System.Drawing.Size(573, 226)
-        Me.ITalk_RichTextBox1.TabIndex = 100
-        Me.ITalk_RichTextBox1.Text = "ITalk_RichTextBox1"
-        Me.ITalk_RichTextBox1.WordWrap = True
         '
         'ListView1
         '
@@ -494,19 +480,9 @@ Partial Class Form1
         Me.ColumnHeader13.Text = "Vídeo Salvo"
         Me.ColumnHeader13.Width = 75
         '
-        'wmp
-        '
-        Me.wmp.Enabled = True
-        Me.wmp.Location = New System.Drawing.Point(551, 68)
-        Me.wmp.Name = "wmp"
-        Me.wmp.OcxState = CType(resources.GetObject("wmp.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.wmp.Size = New System.Drawing.Size(75, 23)
-        Me.wmp.TabIndex = 97
-        Me.wmp.Visible = False
-        '
         'TrackBar1
         '
-        Me.TrackBar1.Location = New System.Drawing.Point(334, 81)
+        Me.TrackBar1.Location = New System.Drawing.Point(186, 30)
         Me.TrackBar1.Name = "TrackBar1"
         Me.TrackBar1.Size = New System.Drawing.Size(58, 45)
         Me.TrackBar1.TabIndex = 96
@@ -514,7 +490,7 @@ Partial Class Form1
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(158, 105)
+        Me.TextBox2.Location = New System.Drawing.Point(271, 56)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(100, 20)
         Me.TextBox2.TabIndex = 95
@@ -522,7 +498,7 @@ Partial Class Form1
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(115, 105)
+        Me.TextBox1.Location = New System.Drawing.Point(271, 83)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.TextBox1.TabIndex = 94
@@ -531,7 +507,7 @@ Partial Class Form1
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(94, 105)
+        Me.TextBox4.Location = New System.Drawing.Point(271, 109)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(100, 20)
         Me.TextBox4.TabIndex = 93
@@ -539,7 +515,7 @@ Partial Class Form1
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(200, 105)
+        Me.TextBox5.Location = New System.Drawing.Point(271, 30)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(100, 20)
         Me.TextBox5.TabIndex = 92
@@ -548,21 +524,22 @@ Partial Class Form1
         'lbSumber
         '
         Me.lbSumber.FormattingEnabled = True
-        Me.lbSumber.Location = New System.Drawing.Point(32, 30)
+        Me.lbSumber.Location = New System.Drawing.Point(22, 136)
         Me.lbSumber.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lbSumber.Name = "lbSumber"
-        Me.lbSumber.Size = New System.Drawing.Size(624, 95)
+        Me.lbSumber.Size = New System.Drawing.Size(701, 186)
         Me.lbSumber.TabIndex = 91
+        Me.lbSumber.Visible = False
         '
         'lbNama
         '
         Me.lbNama.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.lbNama.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lbNama.FormattingEnabled = True
-        Me.lbNama.Location = New System.Drawing.Point(-15996, -8260)
+        Me.lbNama.Location = New System.Drawing.Point(22, 30)
         Me.lbNama.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lbNama.Name = "lbNama"
-        Me.lbNama.Size = New System.Drawing.Size(241, 41)
+        Me.lbNama.Size = New System.Drawing.Size(701, 93)
         Me.lbNama.TabIndex = 90
         Me.lbNama.Visible = False
         '
@@ -658,6 +635,34 @@ Partial Class Form1
         Me.Label2.TabIndex = 112
         Me.Label2.Text = "PLP"
         '
+        'BackgroundWorker1
+        '
+        '
+        'ITalk_RichTextBox1
+        '
+        Me.ITalk_RichTextBox1.AutoWordSelection = False
+        Me.ITalk_RichTextBox1.BackColor = System.Drawing.Color.Transparent
+        Me.ITalk_RichTextBox1.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.ITalk_RichTextBox1.ForeColor = System.Drawing.Color.DimGray
+        Me.ITalk_RichTextBox1.Location = New System.Drawing.Point(407, 103)
+        Me.ITalk_RichTextBox1.Name = "ITalk_RichTextBox1"
+        Me.ITalk_RichTextBox1.ReadOnly = False
+        Me.ITalk_RichTextBox1.Size = New System.Drawing.Size(253, 129)
+        Me.ITalk_RichTextBox1.TabIndex = 100
+        Me.ITalk_RichTextBox1.Text = "ITalk_RichTextBox1"
+        Me.ITalk_RichTextBox1.Visible = False
+        Me.ITalk_RichTextBox1.WordWrap = True
+        '
+        'wmp
+        '
+        Me.wmp.Enabled = True
+        Me.wmp.Location = New System.Drawing.Point(407, 30)
+        Me.wmp.Name = "wmp"
+        Me.wmp.OcxState = CType(resources.GetObject("wmp.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.wmp.Size = New System.Drawing.Size(75, 23)
+        Me.wmp.TabIndex = 97
+        Me.wmp.Visible = False
+        '
         'CMS_Artista
         '
         Me.CMS_Artista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoverDaBibliotecaToolStripMenuItem, Me.WikipediaToolStripMenuItem, Me.BingToolStripMenuItem, Me.InfoToolStripMenuItem})
@@ -727,9 +732,6 @@ Partial Class Form1
         Me.Removerdabiblioteca.Size = New System.Drawing.Size(192, 22)
         Me.Removerdabiblioteca.Text = "Remover da biblioteca"
         '
-        'BackgroundWorker1
-        '
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -754,8 +756,8 @@ Partial Class Form1
         Me.MetroTabPage4.ResumeLayout(False)
         Me.MetroTabPage3.ResumeLayout(False)
         Me.MetroTabPage3.PerformLayout()
-        CType(Me.wmp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.wmp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMS_Artista.ResumeLayout(False)
         Me.CMS_Musica.ResumeLayout(False)
         Me.CMS_Album.ResumeLayout(False)

@@ -8,6 +8,8 @@ Imports System.Windows.Input
 Imports Microsoft.Win32
 Imports System.Net
 Imports System.ComponentModel
+Imports CefSharp.WinForms
+Imports CefSharp
 
 Public Class Form1
 
@@ -106,6 +108,11 @@ Public Class Form1
         MetroTabControl1.TabPages.RemoveAt(2)
 
         Me.Text = "PLP"
+
+        'Configurando o arquivo de configuração do CefSharp(Videos inicializam automaticamente)
+        Dim settings As New CefSettings()
+        settings.CefCommandLineArgs.Add("autoplay-policy", "no-user-gesture-required")
+        Cef.Initialize(settings)
 
 
         'Protocolo de Segurança
@@ -254,7 +261,7 @@ Public Class Form1
         StartUp.WriteLine(MetroTrackBar1.Value)
         StartUp.Close()
 
-        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 1 Then
+        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 1 Then
             If MsgBox("O navegador está aberto. Deseja fechar mesmo assim?", MsgBoxStyle.YesNo, "PLP") = DialogResult.Yes Then
                 'Chama a função de esmaecimento
                 FadingForm()
@@ -347,14 +354,14 @@ Public Class Form1
     End Sub
     Private Sub Nome_Click(sender As Object, e As EventArgs) Handles Nome.Click
 
-        GeckoFX.WebBrowser1.Load("https://www.google.com.br/search?q=" & TextBox5.Text & "&source=lnms&tbm=isch&sa=X&ved=0CAgQ_AUoAmoVChMIiJCXmZDhxgIVQ7QUCh1WAQHu&biw=1360&bih=643")
+        BrowserCefSharp.WebBrowser1.Load("https://www.google.com.br/search?q=" & TextBox5.Text & "&source=lnms&tbm=isch&sa=X&ved=0CAgQ_AUoAmoVChMIiJCXmZDhxgIVQ7QUCh1WAQHu&biw=1360&bih=643")
 
     End Sub
 
     Private Sub Artista_Click(sender As Object, e As EventArgs) Handles Artista.Click
         Try
 
-            GeckoFX.WebBrowser1.Load("https://www.google.com.br/search?q=" & TextBox4.Text & "&source=lnms&tbm=isch&sa=X&ved=0CAgQ_AUoAmoVChMIiJCXmZDhxgIVQ7QUCh1WAQHu&biw=1360&bih=643")
+            BrowserCefSharp.WebBrowser1.Load("https://www.google.com.br/search?q=" & TextBox4.Text & "&source=lnms&tbm=isch&sa=X&ved=0CAgQ_AUoAmoVChMIiJCXmZDhxgIVQ7QUCh1WAQHu&biw=1360&bih=643")
 
         Catch ex As Exception
         End Try
@@ -607,15 +614,15 @@ Public Class Form1
                 convert2 = Replace(mp3.Title, " ", "-").Replace("'", "").Replace(",", "").Replace("?", "")
                 If Letra = 1 Then
                     If LetraDireta = 1 Then
-                        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-                            GeckoFX.Show()
-                            GeckoFX.Text = "Letras"
+                        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+                            BrowserCefSharp.Show()
+                            BrowserCefSharp.Text = "Letras"
                         End If
                         Wiki = 0 'Wikipedia Desligado
                         TextBox4.Text = convert1
                         TextBox5.Text = convert2
 
-                        GeckoFX.WebBrowser1.Load("http://www.vagalume.com.br/" & convert1 & "/" & convert2)
+                        BrowserCefSharp.WebBrowser1.Load("http://www.vagalume.com.br/" & convert1 & "/" & convert2)
                         UrlLetra_Video = "http://www.vagalume.com.br/" & convert1 & "/" & convert2 & ".html"
 
                         LetraDireta = 0
@@ -629,12 +636,12 @@ Public Class Form1
                             End Using
 
                             wmp.URL = ""
-                            If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-                                GeckoFX.Show()
+                            If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+                                BrowserCefSharp.Show()
                             End If
                             Wiki = 0 'Wikipedia Desligado
-                            GeckoFX.WebBrowser1.Load(url)
-                            GeckoFX.Text = "Vídeo"
+                            BrowserCefSharp.WebBrowser1.Load(url)
+                            BrowserCefSharp.Text = "Vídeo"
                             UrlLetra_Video = url
                             LetraDireta = 0
 
@@ -654,10 +661,10 @@ Public Class Form1
                         convert1 = convert1.ToLower
                         convert2 = convert2.ToLower
                         UrlLetra_Video = "http://www.metrolyrics.com/" + TextBox5.Text & "-lyrics-" & TextBox4.Text
-                        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-                            GeckoFX.Show()
+                        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+                            BrowserCefSharp.Show()
                         End If
-                        GeckoFX.WebBrowser1.Load(UrlLetra_Video)
+                        BrowserCefSharp.WebBrowser1.Load(UrlLetra_Video)
                         LetraDireta = 0
                     End If
                 ElseIf Letra = 3 Then
@@ -670,11 +677,11 @@ Public Class Form1
                         convert2 = TextBox5.Text.ToLower
                         UrlLetra_Video = "http://genius.com/" & convert1 & "-" & convert2 & "-lyrics"
                         LetraDireta = 0
-                        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-                            GeckoFX.Show()
-                            GeckoFX.Text = "Letras"
+                        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+                            BrowserCefSharp.Show()
+                            BrowserCefSharp.Text = "Letras"
                         Else
-                            GeckoFX.WebBrowser1.Load(UrlLetra_Video)
+                            BrowserCefSharp.WebBrowser1.Load(UrlLetra_Video)
                         End If
                     End If
                 ElseIf Letra = 4 Then
@@ -687,11 +694,11 @@ Public Class Form1
                         convert2 = TextBox5.Text.ToLower
                         UrlLetra_Video = "https://www.musixmatch.com/pt-br/letras/" & convert1 & "/" & convert2
                         LetraDireta = 0
-                        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-                            GeckoFX.Show()
-                            GeckoFX.Text = "Letras"
+                        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+                            BrowserCefSharp.Show()
+                            BrowserCefSharp.Text = "Letras"
                         Else
-                            GeckoFX.WebBrowser1.Load(UrlLetra_Video)
+                            BrowserCefSharp.WebBrowser1.Load(UrlLetra_Video)
                         End If
                     End If
                 End If
@@ -713,7 +720,7 @@ Public Class Form1
             Artista = FilaMusica.Dequeue()
 
             Wiki = 0 'Wikipedia Desligado
-            GeckoFX.Text = "Vídeo"
+            BrowserCefSharp.Text = "Vídeo"
 
             Dim item = New VideoSearch()
 
@@ -722,20 +729,20 @@ Public Class Form1
 
             UrlLetra_Video = items(0).Url
 
-            GeckoFX.PictureBox1.ImageLocation = items(0).Thumbnail
-            GeckoFX.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-            GeckoFX.Label2.Text = items(0).Title
+            BrowserCefSharp.PictureBox1.ImageLocation = items(0).Thumbnail
+            BrowserCefSharp.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+            BrowserCefSharp.Label2.Text = items(0).Title
 
             FilaMusica.Enqueue(Artista)
 
             'UrlLetra = "https://www.youtube.com/results?search_query=" & YoutubeInfo.Artist & " " & YoutubeInfo.Title
             LetraDireta = 0
             Video.ID = UrlLetra_Video.Replace("https://www.youtube.com/watch?v=", "")
-            If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
+            If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
                 ClickVideo = 0
-                GeckoFX.Show()
+                BrowserCefSharp.Show()
             Else
-                GeckoFX.WebBrowser1.Load(Video.ID)
+                BrowserCefSharp.WebBrowser1.Load(Video.ID)
             End If
 
         End Try
@@ -753,30 +760,30 @@ Public Class Form1
             Dim item = New VideoSearch()
             Dim items As List(Of VideoInformation) = item.SearchQuery(YoutubeInfo.Artist & "" & YoutubeInfo.Title, 1)
             UrlLetra_Video = items(0).Url
-            GeckoFX.PictureBox1.ImageLocation = items(0).Thumbnail
-            GeckoFX.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-            GeckoFX.Label2.Text = items(0).Title
+            BrowserCefSharp.PictureBox1.ImageLocation = items(0).Thumbnail
+            BrowserCefSharp.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+            BrowserCefSharp.Label2.Text = items(0).Title
         Else
             Dim item = New VideoSearch()
             Dim items As List(Of VideoInformation) = item.SearchQuery(lbSumber.SelectedItem, 1)
-            GeckoFX.PictureBox1.ImageLocation = items(0).Thumbnail
-            GeckoFX.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-            GeckoFX.Label2.Text = items(0).Title
+            BrowserCefSharp.PictureBox1.ImageLocation = items(0).Thumbnail
+            BrowserCefSharp.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+            BrowserCefSharp.Label2.Text = items(0).Title
         End If
 
         lbSumber.SelectedIndex = AuxIndex
 
         Wiki = 0 'Wikipedia Desligado
-        GeckoFX.Text = "Vídeo"
+        BrowserCefSharp.Text = "Vídeo"
 
         'UrlLetra = "https://www.youtube.com/results?search_query=" & YoutubeInfo.Artist & " " & YoutubeInfo.Title
         LetraDireta = 0
         Video.ID = UrlLetra_Video.Replace("https://www.youtube.com/watch?v=", "")
-        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
+        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
             ClickVideo = 0
-            GeckoFX.Show()
+            BrowserCefSharp.Show()
         Else
-            GeckoFX.WebBrowser1.Load(Video.ID)
+            BrowserCefSharp.WebBrowser1.Load(Video.ID)
         End If
     End Sub
 
@@ -1089,7 +1096,7 @@ Public Class Form1
             If wmp.playState = WMPLib.WMPPlayState.wmppsReady Then
 
                 If Letra = 0 Then
-                    Label1.Text = GeckoFX.Status
+                    Label1.Text = BrowserCefSharp.Status
                 End If
 
             End If
@@ -1369,10 +1376,12 @@ Public Class Form1
         Dim Folder As New IO.DirectoryInfo(CType(sender, PictureBox).Name.ToString)
         Dim TamExt As Int16 = 5
 
+
         For Each File As IO.FileInfo In Folder.GetFiles("*.mp4", IO.SearchOption.TopDirectoryOnly).OrderBy(Function(x) x.CreationTime)
             Try
                 lbNama.Items.Add(File)
                 lbSumber.Items.Add(File.FullName)
+
 
                 Dim P As New Panel
                 Dim L As New Label
@@ -1394,11 +1403,10 @@ Public Class Form1
 
                 Dim Diretorio = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\PLP\logs\bib"
 
-                If (File.Name.Replace(".mp4", "").Substring(File.Name.IndexOf("-") + 1).Contains(Artista.Text.Replace(Diretorio & "\", ""))) Then
-                    L.Text = File.Name.Replace(".mp4", "").Substring(0, File.Name.IndexOf("-"))
-                Else
-                    L.Text = File.Name.Replace(".mp4", "").Substring(File.Name.IndexOf("-") + 1, File.Name.Length - TamExt - (File.Name.IndexOf("-")))
-                End If
+
+                L.Text = File.ToString.Replace(".mp4", "").Replace("-", "").Replace("_", "").Replace("-", "").Replace(Folder.Parent.ToString, "")
+
+
 
                 i = i + 1
 
@@ -1549,12 +1557,12 @@ Public Class Form1
                 UrlLetra_Video = "https:/pt.wikipedia.org/wiki/" & Artista.Replace(" ", "_")
                 LetraDireta = 0
 
-                If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-                    GeckoFX.Show()
-                    GeckoFX.WebBrowser1.Load(UrlLetra_Video)
-                    GeckoFX.Text = "Wikipedia"
+                If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+                    BrowserCefSharp.Show()
+                    BrowserCefSharp.WebBrowser1.Load(UrlLetra_Video)
+                    BrowserCefSharp.Text = "Wikipedia"
                 Else
-                    GeckoFX.WebBrowser1.Load(UrlLetra_Video)
+                    BrowserCefSharp.WebBrowser1.Load(UrlLetra_Video)
                 End If
 
             End If
@@ -1574,12 +1582,12 @@ Public Class Form1
                 UrlLetra_Video = "www.bing.com/search?q=" & Artista
                 LetraDireta = 0
 
-                If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-                    GeckoFX.Show()
-                    GeckoFX.WebBrowser1.Load(UrlLetra_Video)
-                    GeckoFX.Text = "Bing"
+                If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+                    BrowserCefSharp.Show()
+                    BrowserCefSharp.WebBrowser1.Load(UrlLetra_Video)
+                    BrowserCefSharp.Text = "Bing"
                 Else
-                    GeckoFX.WebBrowser1.Load(UrlLetra_Video)
+                    BrowserCefSharp.WebBrowser1.Load(UrlLetra_Video)
                 End If
             End If
         End If
@@ -1740,5 +1748,6 @@ Public Class Form1
     Private Sub ImagemMúsica_Click(sender As Object, e As EventArgs) Handles ImagemMúsica.Click
         ImagemMusica.Show()
     End Sub
+
 End Class
 

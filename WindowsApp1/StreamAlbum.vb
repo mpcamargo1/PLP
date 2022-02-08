@@ -105,10 +105,10 @@ Public Class StreamAlbum
         Url = StreamMenu.items(0).Url
 
         'Url da imagem do video, que será mostrado quando estará carregando o GeckoFX 
-        GeckoFX.PictureBox1.ImageLocation = StreamMenu.items(0).Thumbnail
+        BrowserCefSharp.PictureBox1.ImageLocation = StreamMenu.items(0).Thumbnail
         'Código que ajusta a imagem ao PictureBox
-        GeckoFX.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-        GeckoFX.Label2.Text = StreamMenu.items(0).Title
+        BrowserCefSharp.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+        BrowserCefSharp.Label2.Text = StreamMenu.items(0).Title
 
         'Letra = 0 (Video) // A classe GeckoFX carregará como um vídeo, ou seja, primeiro irá
         ' .. mostrar a thumbnail enquanto carrega a página do Youtube
@@ -122,14 +122,14 @@ Public Class StreamAlbum
         Form1.wmp.URL = MsgBox(Url)
 
         'Caso o navegador já estiver aberto, irá atualizar a url, caso contrário será necessário abrir novamente 
-        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
+        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
             'Abre a janela do GeckoFX e ele mesmo se encarregará de ler a variável ID da classe Video, pois ele leu
             ' que Letra = 0 (Video)
             '    GeckoFX.Show()
 
         Else
             'Abre direto o vídeo se a janela estiver aberto
-            GeckoFX.WebBrowser1.Load(Video.ID)
+            BrowserCefSharp.WebBrowser1.Load(Video.ID)
         End If
 
     End Sub
@@ -145,10 +145,10 @@ Public Class StreamAlbum
             Url = Form1.lbSumber.SelectedItem
             If Not Url.Equals("PLP 0x001") Then
                 Video.ID = Url.Replace(YTReplace, "")
-                If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-                    GeckoFX.Show()
+                If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+                    BrowserCefSharp.Show()
                 Else
-                    GeckoFX.WebBrowser1.Load(YTReplace & Video.ID)
+                    BrowserCefSharp.WebBrowser1.Load(YTReplace & Video.ID)
                 End If
 
             Else

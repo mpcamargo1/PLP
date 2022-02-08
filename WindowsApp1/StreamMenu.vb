@@ -208,10 +208,10 @@ Public Class StreamMenu
         Url = items(0).Url
 
         'Recupera a url da thumbnail do video
-        GeckoFX.PictureBox1.ImageLocation = items(0).Thumbnail
+        BrowserCefSharp.PictureBox1.ImageLocation = items(0).Thumbnail
         'Código que ajusta a imagem ao PictureBox
-        GeckoFX.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-        GeckoFX.Label2.Text = items(0).Title
+        BrowserCefSharp.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+        BrowserCefSharp.Label2.Text = items(0).Title
 
         'Letra = 0 (Video)
         Form1.Letra = 0
@@ -219,10 +219,10 @@ Public Class StreamMenu
         Video.ID = Url
 
         'Caso o navegador já estiver aberto, irá atualizar a url, caso contrário será necessário abrir novamente 
-        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
-            GeckoFX.Show()
+        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
+            BrowserCefSharp.Show()
         Else
-            GeckoFX.WebBrowser1.Load(Video.ID)
+            BrowserCefSharp.WebBrowser1.Load(Video.ID)
         End If
 
     End Sub

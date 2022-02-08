@@ -5,7 +5,7 @@ Imports VideoLibrary
 Imports System.Reflection
 
 Public Class Video
-    Dim NewForm As GeckoFX
+    Dim NewForm As BrowserCefSharp
     Public Shared video
     Public Shared ID As String
     Dim url As String
@@ -64,17 +64,17 @@ Public Class Video
         Using ler As New StreamReader(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\PLP\logs\videos\" & CType(sender, PictureBox).Name.Replace(".jpg", ".data"))
             url = ler.ReadLine()
         End Using
-        GeckoFX.Label2.Text = CType(sender, PictureBox).Name.Replace(".jpg", "")
+        BrowserCefSharp.Label2.Text = CType(sender, PictureBox).Name.Replace(".jpg", "")
         ID = url
         ID = ID.Replace("https://www.youtube.com/watch?v=", "")
 
 
 
-        If Application.OpenForms.OfType(Of GeckoFX)().Count() = 0 Then
+        If Application.OpenForms.OfType(Of BrowserCefSharp)().Count() = 0 Then
             Form1.ClickVideo = 0
-            GeckoFX.Show()
+            BrowserCefSharp.Show()
         Else
-            GeckoFX.WebBrowser1.Load("https://www.youtube.com/watch?v=" & ID)
+            BrowserCefSharp.WebBrowser1.Load("https://www.youtube.com/watch?v=" & ID)
         End If
 
 
@@ -103,7 +103,7 @@ Public Class Video
                 ID = ID.Replace("https://www.youtube.com/watch?v=", "")
                 ID = "https://www.youtube.com/embed/" & ID
                 Form1.UrlLetra_Video = ID
-                GeckoFX.Show()
+                BrowserCefSharp.Show()
             End If
         End If
     End Sub
